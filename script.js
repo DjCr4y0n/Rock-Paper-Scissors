@@ -4,17 +4,26 @@ function getComputerChoice()
     return arr[(Math.floor(Math.random() * arr.length))];
 }
 
+window.onload=function(){
+    let playerScore = 0;
+    let computerScore = 0;
 
-let playerScore = 0;
-let computerScore = 0;
+    let rock = document.getElementById("rock");
+    let paper = document.getElementById("paper");
+    let scissors = document.getElementById("scissors");
+    rock.addEventListener('click', round);
+    paper.addEventListener('click', round);
+    scissors.addEventListener('click', round);
 
-
-function game()
-{
-    while (playerScore != 5 && computerScore != 5)
+    function playerChoice(event)
     {
-        let playerSelection = prompt("Gimme ur choice youngling");
-        playerSelection.toLowerCase();
+        return event.value;
+    }
+
+
+
+    function round(playerSelection)
+    {
         let computerSelection = getComputerChoice();
         if (playerSelection == computerSelection)
         {
@@ -55,16 +64,28 @@ function game()
             console.log(playerScore, computerScore);
         }
     }
-}
 
+    function game()
+    {
+        let display = document.getElementById("display");
+        choice = playerChoice();
+        round(choice);
+        if (playerScore > computerScore)
+        {
+            console.log("Player wins!");
+            display.textContent = "Player wins!"
+        } 
+        else if (playerScore == computerScore)
+        {
+            console.log("It's a tie");
+            display.textContent = "It's a tie"
+        }
+        else
+        {
+            console.log("Computer wins...");
+            display.textContent = "Computer wins..."
+        }
+    }
 
-game();
-
-if (playerScore > computerScore)
-{
-    console.log("Player wins!");
-}
-else
-{
-    console.log("Computer wins...");
+    game();
 }
