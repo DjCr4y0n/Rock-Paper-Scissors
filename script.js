@@ -11,19 +11,23 @@ window.onload=function(){
     let rock = document.getElementById("rock");
     let paper = document.getElementById("paper");
     let scissors = document.getElementById("scissors");
-    rock.addEventListener('click', round);
-    paper.addEventListener('click', round);
-    scissors.addEventListener('click', round);
+    
 
-    function playerChoice(event)
+    function round()
     {
-        return event.value;
-    }
+        playerSelection = ''
+        if (rock){
+            rock.addEventListener('click', () => {playerSelection= 'rock'});   
+        }
+        if (paper)
+        {
+            paper.addEventListener('click', () => {playerSelection= "paper"});
+        }
+        if (scissors)
+        {
+            scissors.addEventListener('click', () => {playerSelection= "scissors"});
+        }
 
-
-
-    function round(playerSelection)
-    {
         let computerSelection = getComputerChoice();
         if (playerSelection == computerSelection)
         {
@@ -68,8 +72,7 @@ window.onload=function(){
     function game()
     {
         let display = document.getElementById("display");
-        choice = playerChoice();
-        round(choice);
+        round();
         if (playerScore > computerScore)
         {
             console.log("Player wins!");
