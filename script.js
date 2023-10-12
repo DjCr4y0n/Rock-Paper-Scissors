@@ -11,11 +11,27 @@ window.onload=function(){
     let rock = document.getElementById("rock");
     let paper = document.getElementById("paper");
     let scissors = document.getElementById("scissors");
+
+    
+    function playerClick(clickedButton)
+    {
+        if (clickedButton == 'rock')
+        {
+            game('rock');
+        }
+        else if (clickedButton == 'paper')
+        {
+            game("paper");
+        }
+        else if (clickedButton == 'scissors')
+        {
+            game('scissors');
+        }
+    }
     
 
-    function round()
+    function round(playerSelection)
     {
-        playerSelection = ''
         if (rock){
             rock.addEventListener('click', () => {playerSelection= 'rock'});   
         }
@@ -69,10 +85,10 @@ window.onload=function(){
         }
     }
 
-    function game()
+    function game(playerSelection)
     {
         let display = document.getElementById("display");
-        round();
+        round(playerSelection);
         if (playerScore > computerScore)
         {
             console.log("Player wins!");
@@ -90,5 +106,5 @@ window.onload=function(){
         }
     }
 
-    game();
+    game(playerClick());
 }
